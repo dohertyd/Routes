@@ -8,11 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		BE2F9BCB2086A4EB005AE10E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2F9BCA2086A4EB005AE10E /* AppDelegate.swift */; };
-		BE2F9BCD2086A4EB005AE10E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2F9BCC2086A4EB005AE10E /* ViewController.swift */; };
 		BE2F9BD02086A4EB005AE10E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE2F9BCE2086A4EB005AE10E /* Main.storyboard */; };
 		BE2F9BD22086A4EF005AE10E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE2F9BD12086A4EF005AE10E /* Assets.xcassets */; };
 		BE2F9BD52086A4EF005AE10E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE2F9BD32086A4EF005AE10E /* LaunchScreen.storyboard */; };
 		BE2F9BE02086A4EF005AE10E /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2F9BDF2086A4EF005AE10E /* RoutesTests.swift */; };
+		BE2F9BEF2086B309005AE10E /* MasterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2F9BEE2086B309005AE10E /* MasterTableViewController.swift */; };
+		BE2F9BF1208751DD005AE10E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2F9BF0208751DD005AE10E /* DetailViewController.swift */; };
+		BE2F9BF52087A200005AE10E /* StopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2F9BF42087A200005AE10E /* StopTableViewCell.swift */; };
+		BE2F9BF72088A9D8005AE10E /* QueryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2F9BF62088A9D8005AE10E /* QueryService.swift */; };
+		BE2F9BF92088ADD2005AE10E /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2F9BF82088ADD2005AE10E /* Route.swift */; };
+		BEAE1038208A08260023238C /* RouteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAE1037208A08260023238C /* RouteTableViewCell.swift */; };
+		BEAE103E208D25ED0023238C /* DetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAE103D208D25ED0023238C /* DetailPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +34,6 @@
 /* Begin PBXFileReference section */
 		BE2F9BC72086A4EB005AE10E /* Routes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Routes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE2F9BCA2086A4EB005AE10E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BE2F9BCC2086A4EB005AE10E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BE2F9BCF2086A4EB005AE10E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE2F9BD12086A4EF005AE10E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE2F9BD42086A4EF005AE10E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +41,13 @@
 		BE2F9BDB2086A4EF005AE10E /* RoutesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoutesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE2F9BDF2086A4EF005AE10E /* RoutesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTests.swift; sourceTree = "<group>"; };
 		BE2F9BE12086A4EF005AE10E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE2F9BEE2086B309005AE10E /* MasterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterTableViewController.swift; sourceTree = "<group>"; };
+		BE2F9BF0208751DD005AE10E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		BE2F9BF42087A200005AE10E /* StopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopTableViewCell.swift; sourceTree = "<group>"; };
+		BE2F9BF62088A9D8005AE10E /* QueryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryService.swift; sourceTree = "<group>"; };
+		BE2F9BF82088ADD2005AE10E /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		BEAE1037208A08260023238C /* RouteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTableViewCell.swift; sourceTree = "<group>"; };
+		BEAE103D208D25ED0023238C /* DetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,11 +89,12 @@
 		BE2F9BC92086A4EB005AE10E /* Routes */ = {
 			isa = PBXGroup;
 			children = (
-				BE2F9BCA2086A4EB005AE10E /* AppDelegate.swift */,
-				BE2F9BCC2086A4EB005AE10E /* ViewController.swift */,
-				BE2F9BCE2086A4EB005AE10E /* Main.storyboard */,
-				BE2F9BD12086A4EF005AE10E /* Assets.xcassets */,
-				BE2F9BD32086A4EF005AE10E /* LaunchScreen.storyboard */,
+				BE2F9BF32087A1B4005AE10E /* DataModel */,
+				BE2F9BF22087A1A9005AE10E /* Networking */,
+				BE2F9BED2086A5E4005AE10E /* Resources */,
+				BE2F9BEC2086A58D005AE10E /* Storyboards */,
+				BE2F9BEB2086A57D005AE10E /* ViewControllers */,
+				BE2F9BEA2086A569005AE10E /* Appdelegate */,
 				BE2F9BD62086A4EF005AE10E /* Info.plist */,
 			);
 			path = Routes;
@@ -94,6 +107,59 @@
 				BE2F9BE12086A4EF005AE10E /* Info.plist */,
 			);
 			path = RoutesTests;
+			sourceTree = "<group>";
+		};
+		BE2F9BEA2086A569005AE10E /* Appdelegate */ = {
+			isa = PBXGroup;
+			children = (
+				BE2F9BCA2086A4EB005AE10E /* AppDelegate.swift */,
+			);
+			path = Appdelegate;
+			sourceTree = "<group>";
+		};
+		BE2F9BEB2086A57D005AE10E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				BE2F9BEE2086B309005AE10E /* MasterTableViewController.swift */,
+				BE2F9BF0208751DD005AE10E /* DetailViewController.swift */,
+				BE2F9BF42087A200005AE10E /* StopTableViewCell.swift */,
+				BEAE1037208A08260023238C /* RouteTableViewCell.swift */,
+				BEAE103D208D25ED0023238C /* DetailPageViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		BE2F9BEC2086A58D005AE10E /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				BE2F9BD32086A4EF005AE10E /* LaunchScreen.storyboard */,
+				BE2F9BCE2086A4EB005AE10E /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		BE2F9BED2086A5E4005AE10E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BE2F9BD12086A4EF005AE10E /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BE2F9BF22087A1A9005AE10E /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				BE2F9BF62088A9D8005AE10E /* QueryService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		BE2F9BF32087A1B4005AE10E /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				BE2F9BF82088ADD2005AE10E /* Route.swift */,
+			);
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,8 +263,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE2F9BCD2086A4EB005AE10E /* ViewController.swift in Sources */,
+				BEAE103E208D25ED0023238C /* DetailPageViewController.swift in Sources */,
+				BE2F9BF1208751DD005AE10E /* DetailViewController.swift in Sources */,
 				BE2F9BCB2086A4EB005AE10E /* AppDelegate.swift in Sources */,
+				BE2F9BF72088A9D8005AE10E /* QueryService.swift in Sources */,
+				BE2F9BF92088ADD2005AE10E /* Route.swift in Sources */,
+				BEAE1038208A08260023238C /* RouteTableViewCell.swift in Sources */,
+				BE2F9BEF2086B309005AE10E /* MasterTableViewController.swift in Sources */,
+				BE2F9BF52087A200005AE10E /* StopTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +433,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PMA2HBWFND;
 				INFOPLIST_FILE = Routes/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -379,6 +452,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PMA2HBWFND;
 				INFOPLIST_FILE = Routes/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
