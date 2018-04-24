@@ -29,18 +29,7 @@ class MasterTableViewController: UITableViewController {
         super.viewDidLoad()
         title = "Routes"
         
-        // Add refresh control
-        //
-        refreshCtrl = UIRefreshControl()
-        refreshCtrl.addTarget(self, action: #selector(MasterTableViewController.refreshTableView), for: .valueChanged)
-        refreshControl = refreshCtrl
-        
         refreshRoutesFromApi()
-    }
-    @objc func refreshTableView() -> Void
-    {
-        refreshRoutesFromApi()
-        refreshCtrl.endRefreshing()
     }
     
     override func didReceiveMemoryWarning() {
