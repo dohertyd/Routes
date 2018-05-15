@@ -17,17 +17,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var busImageView: UIImageView!
     
     var page = 0
-    var cache:NSCache<AnyObject, AnyObject>!
     var currentRoute:Route!
-    // Session with default configuration
-    //
-    lazy var downloadsSession: URLSession = {
-        let config = URLSessionConfiguration.default
-        config.waitsForConnectivity = true
-        return URLSession(configuration: config)
-    }()
-    
-    var task:URLSessionDownloadTask?
+    var ip:RouteImageProvider?
     
     override func viewDidLoad()
     {
@@ -43,39 +34,25 @@ class DetailViewController: UIViewController {
         routeNameLabel.text = currentRoute.name
         routeDescriptionLabel.text = currentRoute.description
         
-        // Using our cache, if image is present for index then fine
-        // if not, the image could be in the process of loading in
-        // Master VC or not loaded at all , we try and download here
-        // and cache if succesfull
-        if let img = cache.object(forKey: page as AnyObject) as? UIImage {
-            busImageView.image = img
-        } else {
-            busImageView.image = UIImage(imageLiteralResourceName: "default_bus")
-            if let imageUrl = currentRoute.imageUrl, let url = URL(string:imageUrl)
-            {
-                task = downloadsSession.downloadTask(with: url) { location, response, error in
-                    defer {self.task = nil}
-                    if let location = location,
-                        let data = try? Data(contentsOf: location),
-                        error == nil,
-                        let response = response as? HTTPURLResponse,
-                        response.statusCode == 200 {
-                        
-                        if  let img = UIImage(data: data) {
-                            DispatchQueue.main.async {
-                                self.busImageView.image = img
-                            }
-                            self.cache.setObject(img, forKey: self.page as AnyObject)
-                        }
-                    }
+        busImageView.image = UIImage(imageLiteralResourceName: "default_bus")
+        if let imageUrl = currentRoute.imageUrl, let url = URL(string:imageUrl)
+        {
+            
+            ip = RouteImageProvider(url: url) {
+                image in
+                OperationQueue.main.addOperation {
+                    self.busImageView.image = image
                 }
-                task?.resume()
             }
         }
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        ip?.cancel()
+    }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    deinit {
+        print("Deinit called for the DetailViewController Class")
     }
 }
 extension DetailViewController : UITableViewDataSource

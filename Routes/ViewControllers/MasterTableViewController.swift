@@ -9,33 +9,19 @@
 import UIKit
 
 class MasterTableViewController: UITableViewController {
-
-    // Session with default configuration
-    //
-    lazy var downloadsSession: URLSession = {
-        let config = URLSessionConfiguration.default
-        config.waitsForConnectivity = true
-        return URLSession(configuration: config)
-    }()
     
+    var imageProviders = Set<RouteImageProvider>()
+    var downloadsInProgress = [IndexPath:RouteImageProvider]()
+
     let qs = QueryService()
     var routeResults: [Route] = []
-    //
-    // Using this as our in memory Cache of images
-    var cache:NSCache<AnyObject, AnyObject>! = NSCache()
-    var refreshCtrl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Routes"
-        
         refreshRoutesFromApi()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
+
     // MARK: - Navigation
     //
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -46,7 +32,6 @@ class MasterTableViewController: UITableViewController {
             let index = sender as! IndexPath
             dpvc.routes = routeResults
             dpvc.routeIndex = index.row
-            dpvc.cache = cache
         }
     }
 }
@@ -61,46 +46,13 @@ extension MasterTableViewController
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Route", for: indexPath) as! RouteTableViewCell
-        cell.routeName.text = routeResults[indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Route", for: indexPath)
         
-        if let imageUrl = routeResults[indexPath.row].imageUrl, let url = URL(string:imageUrl)
+        if let cell = cell as? RouteTableViewCell
         {
-            cell.updateImageViewWithImage(nil)
-            if (cache.object(forKey: indexPath.row as AnyObject) != nil)
-            {
-                cell.updateImageViewWithImage(self.cache.object(forKey: indexPath.row as AnyObject) as? UIImage)
-            } else {  // Download Image
-                let task = downloadsSession.downloadTask(with: url) { location, response, error in
-                    
-                    if let location = location,
-                        let data = try? Data(contentsOf: location),
-                        error == nil,
-                        let response = response as? HTTPURLResponse,
-                        response.statusCode == 200 {
-                        
-                        // Only load into visible cells to avoid reuse issues
-                        //
-                        if  let img = UIImage(data: data) {
-                            DispatchQueue.main.async {
-                                if tableView.indexPathsForVisibleRows?.contains(indexPath) ?? false {
-                                    cell.updateImageViewWithImage(img)
-                                }
-                                self.cache.setObject(img, forKey: indexPath.row as AnyObject)
-                            }
-                        }
-                    } else {
-                        DispatchQueue.main.async {
-                            if tableView.indexPathsForVisibleRows?.contains(indexPath) ?? false {
-                                cell.updateImageViewWithImage(UIImage(imageLiteralResourceName: "placeholder"))
-                            }
-                        }
-                    }
-                }
-                task.resume()
-            }
-        } else { // When ImagUrl is null
-            cell.updateImageViewWithImage(UIImage(imageLiteralResourceName: "default_bus"))
+            cell.routeName.text = routeResults[indexPath.row].name
+            cell.urlStringId = routeResults[indexPath.row].imageUrl
+            cell.busImageView.image = routeResults[indexPath.row].image
         }
         return cell
     }
@@ -124,12 +76,45 @@ extension MasterTableViewController
 }
 
 
-// MARK: - Table view delegate overrides
+// MARK: - Table view delegate
 //
 extension MasterTableViewController
 {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         performSegue(withIdentifier: "MasterToDetailPageVCSegue", sender: indexPath)
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let cell = cell as? RouteTableViewCell else { return }
+        if routeResults[indexPath.row].state == .Downloaded
+        { return}
+        
+        if let imageUrl = routeResults[indexPath.row].imageUrl, let url = URL(string:imageUrl)
+        {
+            let ip = RouteImageProvider(url: url) {
+                image in
+                OperationQueue.main.addOperation {
+                    self.routeResults[indexPath.row].image = image
+                    self.routeResults[indexPath.row].state = .Downloaded
+                    cell.updateImageViewWithImage(image)
+                }
+            }
+            imageProviders.insert(ip)
+            downloadsInProgress[indexPath] = ip
+            print("Adding a provider")
+        } else { // When ImagUrl is null
+            cell.updateImageViewWithImage(UIImage(imageLiteralResourceName: "default_bus"))
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let cell = cell as? RouteTableViewCell else { return }
+        for provider in imageProviders.filter({ $0.theUrl.absoluteString == cell.urlStringId }) {
+            provider.cancel()
+            imageProviders.remove(provider)
+            downloadsInProgress.removeValue(forKey: indexPath)
+            print("Removing a provider")
+        }
     }
 }

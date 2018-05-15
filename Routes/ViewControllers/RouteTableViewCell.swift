@@ -14,23 +14,34 @@ class RouteTableViewCell: UITableViewCell {
     @IBOutlet weak var routeName: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    func updateImageViewWithImage(_ image: UIImage?) {
-        if let image = image {
-            busImageView.image = image
-            busImageView.alpha = 0
-            UIView.animate(withDuration: 0.2, animations: {
-                self.busImageView.alpha = 1.0
-                self.activityIndicator.alpha = 0
-            }, completion: {
-                _ in
-                self.activityIndicator.stopAnimating()
-            })
-            
-        } else { // nil!
-            busImageView.image = nil
-            busImageView.alpha = 1.0
-            activityIndicator.alpha = 1.0
-            activityIndicator.startAnimating()
+    var urlStringId :String? {
+        didSet {
+            //updateImageViewWithImage(nil)
         }
+    }
+    
+    func updateImageViewWithImage(_ image: UIImage?) {
+//        if let image = image {
+//            busImageView.image = image
+//            busImageView.alpha = 0
+//            UIView.animate(withDuration: 0.1, animations: {
+//                self.busImageView.alpha = 1.0
+//                self.activityIndicator.alpha = 0
+//            }, completion: {
+//                _ in
+//                self.activityIndicator.stopAnimating()
+//            })
+//
+//        } else { // nil!
+//            busImageView.image = nil
+//            busImageView.alpha = 1.0
+//            activityIndicator.alpha = 1.0
+//            activityIndicator.startAnimating()
+//        }
+        busImageView.image = image
+    }
+    
+    override func prepareForReuse() {
+        busImageView.image = nil
     }
 }

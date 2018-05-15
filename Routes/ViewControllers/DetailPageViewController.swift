@@ -12,7 +12,7 @@ class DetailPageViewController: UIPageViewController {
 
     var pageCount = 0
     var routes:[Route]!
-    var cache:NSCache<AnyObject, AnyObject>!
+    //var cache:NSCache<AnyObject, AnyObject>!
     var routeIndex = 0
     
     override func viewDidLoad() {
@@ -34,7 +34,7 @@ class DetailPageViewController: UIPageViewController {
         let dvc = newDetailViewController()
         let aPage = min(max(0, page), pageCount - 1)
         dvc.page = aPage
-        dvc.cache = cache
+        //dvc.cache = cache
         
         dvc.currentRoute = routes[page]
         return dvc

@@ -19,6 +19,10 @@
 		BE2F9BF92088ADD2005AE10E /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2F9BF82088ADD2005AE10E /* Route.swift */; };
 		BEAE1038208A08260023238C /* RouteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAE1037208A08260023238C /* RouteTableViewCell.swift */; };
 		BEAE103E208D25ED0023238C /* DetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAE103D208D25ED0023238C /* DetailPageViewController.swift */; };
+		BECA2E1520A5EC0200F1C1A4 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECA2E1420A5EC0200F1C1A4 /* AsyncOperation.swift */; };
+		BECA2E1820A5FD2000F1C1A4 /* QueryOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECA2E1720A5FD2000F1C1A4 /* QueryOperation.swift */; };
+		BECA2E1A20A6095C00F1C1A4 /* RouteImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECA2E1920A6095C00F1C1A4 /* RouteImageProvider.swift */; };
+		BECA2E1C20A61A2900F1C1A4 /* DataLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BECA2E1B20A61A2900F1C1A4 /* DataLoadOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,10 @@
 		BE2F9BF82088ADD2005AE10E /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		BEAE1037208A08260023238C /* RouteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTableViewCell.swift; sourceTree = "<group>"; };
 		BEAE103D208D25ED0023238C /* DetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPageViewController.swift; sourceTree = "<group>"; };
+		BECA2E1420A5EC0200F1C1A4 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		BECA2E1720A5FD2000F1C1A4 /* QueryOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryOperation.swift; sourceTree = "<group>"; };
+		BECA2E1920A6095C00F1C1A4 /* RouteImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteImageProvider.swift; sourceTree = "<group>"; };
+		BECA2E1B20A61A2900F1C1A4 /* DataLoadOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoadOperation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +157,7 @@
 		BE2F9BF22087A1A9005AE10E /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				BECA2E1320A5EB9E00F1C1A4 /* Operations */,
 				BE2F9BF62088A9D8005AE10E /* QueryService.swift */,
 			);
 			path = Networking;
@@ -158,8 +167,27 @@
 			isa = PBXGroup;
 			children = (
 				BE2F9BF82088ADD2005AE10E /* Route.swift */,
+				BECA2E1920A6095C00F1C1A4 /* RouteImageProvider.swift */,
 			);
 			path = DataModel;
+			sourceTree = "<group>";
+		};
+		BECA2E1320A5EB9E00F1C1A4 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				BECA2E1620A5EC1F00F1C1A4 /* Abstract */,
+				BECA2E1720A5FD2000F1C1A4 /* QueryOperation.swift */,
+				BECA2E1B20A61A2900F1C1A4 /* DataLoadOperation.swift */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
+		BECA2E1620A5EC1F00F1C1A4 /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				BECA2E1420A5EC0200F1C1A4 /* AsyncOperation.swift */,
+			);
+			path = Abstract;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,12 +292,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEAE103E208D25ED0023238C /* DetailPageViewController.swift in Sources */,
+				BECA2E1A20A6095C00F1C1A4 /* RouteImageProvider.swift in Sources */,
 				BE2F9BF1208751DD005AE10E /* DetailViewController.swift in Sources */,
+				BECA2E1820A5FD2000F1C1A4 /* QueryOperation.swift in Sources */,
 				BE2F9BCB2086A4EB005AE10E /* AppDelegate.swift in Sources */,
 				BE2F9BF72088A9D8005AE10E /* QueryService.swift in Sources */,
 				BE2F9BF92088ADD2005AE10E /* Route.swift in Sources */,
 				BEAE1038208A08260023238C /* RouteTableViewCell.swift in Sources */,
 				BE2F9BEF2086B309005AE10E /* MasterTableViewController.swift in Sources */,
+				BECA2E1C20A61A2900F1C1A4 /* DataLoadOperation.swift in Sources */,
+				BECA2E1520A5EC0200F1C1A4 /* AsyncOperation.swift in Sources */,
 				BE2F9BF52087A200005AE10E /* StopTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
